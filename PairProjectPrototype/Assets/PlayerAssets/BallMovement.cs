@@ -14,7 +14,6 @@ public class BallMovement : MonoBehaviour
     private float accelPerFrame = 0.01f;
 
     private Rigidbody2D RigidBodyRef;
-    [SerializeField]
     private Camera cam;
 
     // Start is called before the first frame update
@@ -46,7 +45,7 @@ public class BallMovement : MonoBehaviour
             if (horizonalVelocity < maxVelocity)
             {
                 Vector3 vel = RigidBodyRef.velocity;
-                vel.x = Mathf.Min(horizonalVelocity + accelPerFrame, maxVelocity);
+                vel.x = Mathf.Min(horizonalVelocity + accelPerFrame * Time.deltaTime * 500, maxVelocity);
                 RigidBodyRef.velocity = vel;
             }
         }
@@ -56,10 +55,9 @@ public class BallMovement : MonoBehaviour
             if (horizonalVelocity > -maxVelocity)
             {
                 Vector3 vel = RigidBodyRef.velocity;
-                vel.x = Mathf.Max(horizonalVelocity - accelPerFrame, -maxVelocity);
+                vel.x = Mathf.Max(horizonalVelocity - accelPerFrame * Time.deltaTime * 500, -maxVelocity);
                 RigidBodyRef.velocity = vel;
             }
         }
-
     }
 }
