@@ -146,17 +146,11 @@ public class PlayerController : MonoBehaviour
         ballRb.velocity = Vector2.zero;
     }
 
-    public void RespawnPlayer()
+    public void SetToDefaultState()
     {
-        if (currentForm == PlayerForm.Human)
+        if (currentForm != PlayerForm.Human)
         {
-            humanForm.transform.position = spawnPoint;
-            humanRb.velocity = Vector2.zero;
-        }
-        else
-        {
-            ballForm.transform.position = spawnPoint;
-            ballRb.velocity = Vector2.zero;
+            SwitchToHuman();
         }
     }
 }
