@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Human Form Parameters")]
     public float humanMoveSpeed = 6f;
-    public float humanJumpForce = 8f;
+    public float humanJumpForce = 4f;
     private Rigidbody2D humanRb;
 
     [Header("Ball Form Parameters")]
@@ -30,12 +30,15 @@ public class PlayerController : MonoBehaviour
     // Ground check, form change only allowed when grounded
     private bool isGrounded;
     private float horizontalInput;
+    
+    private Vector3 spawnPoint;
 
     void Start()
     {
         humanRb = humanForm.GetComponent<Rigidbody2D>();
         ballRb = ballForm.GetComponent<Rigidbody2D>();
-
+        // Store initial position as spawn point
+        spawnPoint = transform.position;
         SwitchToHuman();
     }
 
@@ -52,7 +55,7 @@ public class PlayerController : MonoBehaviour
             BallMovement();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.C) && isGrounded)
         {
             ToggleForm();
         }
@@ -72,13 +75,12 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-
     void HumanMovement()
     {
         humanRb.velocity = new Vector2(horizontalInput * humanMoveSpeed, humanRb.velocity.y);
 
         // Jump only when grounded
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             humanRb.velocity = new Vector2(humanRb.velocity.x, humanJumpForce);
         }
@@ -88,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         
         // Jump only when grounded
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             ballRb.velocity = new Vector2(ballRb.velocity.x, ballJumpForce);
         }
@@ -142,5 +144,19 @@ public class PlayerController : MonoBehaviour
         
         // Reset velocity when switching
         ballRb.velocity = Vector2.zero;
+    }
+
+    public void RespawnPlayer()
+    {
+        if (currentForm == PlayerForm.Human)
+        {
+            humanForm.transform.position = spawnPoint;
+            humanRb.velocity = Vector2.zero;
+        }
+        else
+        {
+            ballForm.transform.position = spawnPoint;
+            ballRb.velocity = Vector2.zero;
+        }
     }
 }
