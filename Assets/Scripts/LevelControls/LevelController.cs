@@ -14,15 +14,17 @@ public class LevelController : MonoBehaviour
     GameObject CurrentLevelObj;
     GameObject PlayerRef;
 
+    Checkpoint CheckPoint;
+
     // Start is called before the first frame update
     void Start()
     {
         PlayerRef = GameObject.Find("Player");
         ResetLevel();
-        StartCoroutine(FirstSpawn());
+        StartCoroutine(DelayedSetSpawn());
     }
     
-    IEnumerator FirstSpawn()
+    IEnumerator DelayedSetSpawn()
     {
         //yield return new WaitForEndOfFrame();
         yield return new WaitForFixedUpdate();
@@ -36,8 +38,14 @@ public class LevelController : MonoBehaviour
         {
             Destroy(CurrentLevelObj);
         }
+        if (CheckPoint)
+        {
+            CheckPoint.enabled = false;
+            CheckPoint = null;
+        }
         CurrentLevelObj = Instantiate(Levels[CurrentLevel], Vector2.zero, Quaternion.identity);
         Respawn();
+        
     }
     public void Respawn()
     {
@@ -51,11 +59,28 @@ public class LevelController : MonoBehaviour
     {
         if (CurrentLevel < Levels.Count-1)
         {
+            if (CheckPoint)
+            {
+                CheckPoint.enabled = false;
+                CheckPoint = null;
+            }
             PlayerRef.SetActive(false);
             Destroy(CurrentLevelObj);
             CurrentLevelObj = Instantiate(Levels[++CurrentLevel], Vector2.zero, Quaternion.identity);
             Respawn();
             PlayerRef.SetActive(true);
+            StartCoroutine(DelayedSetSpawn());
         }
+    }
+
+    public void newCheckPoint(Checkpoint c)
+    {
+        if (CheckPoint)
+        {
+            CheckPoint.toggleCheckpoint();
+        }
+        CheckPoint = c;
+        GameObject spawn = GameObject.Find("Spawn");
+        spawn.transform.position = c.transform.position;
     }
 }
