@@ -12,19 +12,19 @@ public class PlayerController : MonoBehaviour
     public GameObject ballForm;
 
     [Header("Human Form Parameters")]
-    public float humanMoveSpeed = 6f;
-    public float humanJumpForce = 4f;
+    private float humanMoveSpeed = 6f;
+    private float humanJumpForce = 10f;
     private Rigidbody2D humanRb;
 
     [Header("Ball Form Parameters")]
-    public float ballMaxSpeed = 15f;
-    public float ballRollForce = 12f;
-    public float ballJumpForce = 16f;
+    private float ballMaxSpeed = 12f;
+    private float ballRollForce = 2f;
+    private float ballJumpForce = 12f;
     private Rigidbody2D ballRb;
 
     [Header("Ground Check")]
     public Transform groundCheck;
-    public float groundCheckRadius = 0.1f;
+    private float groundCheckRadius = 0.6f;
     public LayerMask groundLayer;
 
     // Ground check, form change only allowed when grounded
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
         humanRb.velocity = new Vector2(horizontalInput * humanMoveSpeed, humanRb.velocity.y);
 
         // Jump only when grounded
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))&& isGrounded)
         {
             humanRb.velocity = new Vector2(humanRb.velocity.x, humanJumpForce);
         }
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         
         // Jump only when grounded
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && isGrounded)
         {
             ballRb.velocity = new Vector2(ballRb.velocity.x, ballJumpForce);
         }
