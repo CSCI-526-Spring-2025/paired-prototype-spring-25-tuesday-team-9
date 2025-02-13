@@ -143,4 +143,12 @@ public class PlayerController : MonoBehaviour
         // Reset velocity when switching
         ballRb.velocity = Vector2.zero;
     }
+
+    public void SetToDefaultState()
+    {
+        if (currentForm != PlayerForm.Human)
+        {
+            SwitchToHuman();
+        }
+    }
 }
