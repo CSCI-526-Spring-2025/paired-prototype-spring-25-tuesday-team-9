@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Form References")]
     public GameObject humanForm;
     public GameObject ballForm;
+    
 
     [Header("Human Form Parameters")]
     public float humanMoveSpeed = 6f;
@@ -78,7 +79,7 @@ public class PlayerController : MonoBehaviour
         humanRb.velocity = new Vector2(horizontalInput * humanMoveSpeed, humanRb.velocity.y);
 
         // Jump only when grounded
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W))
         {
             humanRb.velocity = new Vector2(humanRb.velocity.x, humanJumpForce);
         }
@@ -88,7 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         
         // Jump only when grounded
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W))
         {
             ballRb.velocity = new Vector2(ballRb.velocity.x, ballJumpForce);
         }
@@ -133,6 +134,7 @@ public class PlayerController : MonoBehaviour
 
     void SwitchToBall()
     {
+        
         if (!isGrounded) return;
         Vector3 currentPosition = humanForm.transform.position;
         currentForm = PlayerForm.Ball;
