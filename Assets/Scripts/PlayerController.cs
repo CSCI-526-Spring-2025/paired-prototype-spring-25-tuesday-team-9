@@ -12,30 +12,33 @@ public class PlayerController : MonoBehaviour
     public GameObject ballForm;
 
     [Header("Human Form Parameters")]
-    public float humanMoveSpeed = 6f;
-    public float humanJumpForce = 8f;
+    private float humanMoveSpeed = 6f;
+    private float humanJumpForce = 10f;
     private Rigidbody2D humanRb;
 
     [Header("Ball Form Parameters")]
-    public float ballMaxSpeed = 15f;
-    public float ballRollForce = 12f;
-    public float ballJumpForce = 16f;
+    private float ballMaxSpeed = 12f;
+    private float ballRollForce = 2f;
+    private float ballJumpForce = 12f;
     private Rigidbody2D ballRb;
 
     [Header("Ground Check")]
     public Transform groundCheck;
-    public float groundCheckRadius = 0.1f;
+    private float groundCheckRadius = 0.6f;
     public LayerMask groundLayer;
 
     // Ground check, form change only allowed when grounded
     private bool isGrounded;
     private float horizontalInput;
+    
+    private Vector3 spawnPoint;
 
     void Start()
     {
         humanRb = humanForm.GetComponent<Rigidbody2D>();
         ballRb = ballForm.GetComponent<Rigidbody2D>();
-
+        // Store initial position as spawn point
+        spawnPoint = transform.position;
         SwitchToHuman();
     }
 
@@ -52,7 +55,7 @@ public class PlayerController : MonoBehaviour
             BallMovement();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.C) && isGrounded)
         {
             ToggleForm();
         }
@@ -72,13 +75,12 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-
     void HumanMovement()
     {
         humanRb.velocity = new Vector2(horizontalInput * humanMoveSpeed, humanRb.velocity.y);
 
         // Jump only when grounded
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))&& isGrounded)
         {
             humanRb.velocity = new Vector2(humanRb.velocity.x, humanJumpForce);
         }
@@ -88,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         
         // Jump only when grounded
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && isGrounded)
         {
             ballRb.velocity = new Vector2(ballRb.velocity.x, ballJumpForce);
         }
