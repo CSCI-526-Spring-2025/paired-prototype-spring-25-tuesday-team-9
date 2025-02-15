@@ -386,10 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Levels:
-  - {fileID: 4336302890644000423, guid: a99f2f83501fb724abf5de76b6b90d2e, type: 3}
-  - {fileID: 1249693591098447135, guid: c0c784fd3d82aa9488cfb02a16378aa7, type: 3}
-  - {fileID: 4654418256148449127, guid: 5132201a95eef4344b123518bb84a13b, type: 3}
-  - {fileID: 5050503140392598675, guid: e7403d8f6afa81847b612a5a368c6905, type: 3}
+  - {fileID: 4336302890644000423, guid: 84cb79854f8c14e439db73ac3ac36c82, type: 3}
   CurrentLevel: 0
 --- !u!1 &1013407240
 GameObject:
