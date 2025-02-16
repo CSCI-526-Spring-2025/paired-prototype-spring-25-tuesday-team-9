@@ -23,7 +23,17 @@ public class LevelController : MonoBehaviour
         ResetLevel();
         StartCoroutine(DelayedSetSpawn());
     }
-    
+
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            NextLevel();
+        }
+    }
+#endif
+
     IEnumerator DelayedSetSpawn()
     {
         //yield return new WaitForEndOfFrame();

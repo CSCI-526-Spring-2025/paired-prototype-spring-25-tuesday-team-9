@@ -12,6 +12,13 @@ public class MovingSpike : MonoBehaviour
     private float timer = 0f;
     private bool movingToEnd = true;
 
+    float z;
+
+    private void Start()
+    {
+        z = transform.position.z;
+    }
+
     void Update()
     {
         if (loop)
@@ -26,14 +33,15 @@ public class MovingSpike : MonoBehaviour
 
     void MoveRepeat()
     {
+        Vector3 t = transform.position;
         timer += Time.deltaTime / travelTime;
         if (movingToEnd)
         {
-            transform.position = Vector2.Lerp(startPoint.position, endPoint.position, timer);
+            t = Vector2.Lerp(startPoint.position, endPoint.position, timer);
         }
         else
         {
-            transform.position = Vector2.Lerp(endPoint.position, startPoint.position, timer);
+            t = Vector2.Lerp(endPoint.position, startPoint.position, timer);
         }
 
         if (timer >= 1f)
@@ -41,6 +49,8 @@ public class MovingSpike : MonoBehaviour
             timer = 0f;
             movingToEnd = !movingToEnd;
         }
+        t.z = z;
+        transform.position = t;
     }
 
     void MoveOneWay()

@@ -6,6 +6,8 @@ public class DamageReset : MonoBehaviour
 {
     GameObject LC;
 
+    [SerializeField] bool resetLevel = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,14 @@ public class DamageReset : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") || (other.transform.parent && other.transform.parent.gameObject.CompareTag("Player")))
         {
-            LC.BroadcastMessage("Respawn");
+            if (!resetLevel)
+            {
+                LC.BroadcastMessage("Respawn");
+            }
+            else
+            {
+                LC.BroadcastMessage("ResetLevel");
+            }
         }
     }
 }
