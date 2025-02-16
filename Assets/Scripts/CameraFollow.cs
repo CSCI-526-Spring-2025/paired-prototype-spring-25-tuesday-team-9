@@ -2,25 +2,23 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform player; // Assign the player in the Inspector
-    public Transform ball;
-    public float smoothSpeed = 0.125f;
-    public Vector3 offset; // Offset to adjust camera position
+    public Transform player; // The player's transform
+    public Vector3 offset; // Offset between camera and player
+
+    void Start()
+    {
+        if (player == null)
+        {
+            Debug.LogError("Player Transform is not assigned to CameraFollow script!");
+        }
+    }
 
     void LateUpdate()
     {
-        if (player == null) return; // Avoid errors if player is missing
-
-        Vector3 desiredPosition = player.position + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-        transform.position = smoothedPosition;
-
-
-        if (ball == null) return; // Avoid errors if player is missing
-
-        Vector3 desiredPositionBall = ball.position + offset;
-        Vector3 smoothedPositionBall = Vector3.Lerp(transform.position, desiredPositionBall, smoothSpeed);
-        transform.position = smoothedPositionBall;
-
+        if (player != null)
+        {
+            // Follow the player with an offset
+            transform.position = new Vector3(player.position.x + offset.x, player.position.y + offset.y, transform.position.z);
+        }
     }
 }
