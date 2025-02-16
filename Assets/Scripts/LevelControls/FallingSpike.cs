@@ -1,14 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingSpike : MonoBehaviour
 {
-    // If given an object below for lower bound, the spike listens to the area between itself and the lower object
-    // If not, the spike tracks area above the ground
-    public Transform humanForm;
-    public Transform ballForm;
-    // Optional object for the lower bound of the detection area
     public Transform detectionObject;
     public LayerMask groundLayer;
     public float fallSpeed = 5f;
@@ -16,20 +11,42 @@ public class FallingSpike : MonoBehaviour
     public bool resetAfterFall = false;
     public float resetTime = 2f;
 
+    private Transform player;
+    private Transform currentTarget;
     private Vector2 originalPosition;
     private bool isFalling = false;
-    private Transform currentTarget;
     private float detectedDropDistance;
+    private Rigidbody2D rb;
 
     void Start()
     {
         originalPosition = transform.position;
+        rb = GetComponent<Rigidbody2D>();
+
+        if (rb == null)
+        {
+            rb = gameObject.AddComponent<Rigidbody2D>();
+            rb.gravityScale = 0; 
+            rb.velocity = Vector2.zero;
+        }
+
+        player = FindObjectOfType<PlayerController>()?.transform;
+
+        if (player == null)
+        {
+            Debug.LogError("FallingSpike: No PlayerController found in the scene!");
+            return;
+        }
+
         DetectDropDistance();
     }
 
     void Update()
     {
-        DetectPlayer();
+        if (player != null)
+        {
+            DetectPlayer();
+        }
     }
 
     void DetectDropDistance()
@@ -41,38 +58,26 @@ public class FallingSpike : MonoBehaviour
         else
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, groundLayer);
-            if (hit.collider != null)
-            {
-                detectedDropDistance = hit.distance;
-            }
-            else
-            {
-                detectedDropDistance = Mathf.Infinity;
-            }
+            detectedDropDistance = hit.collider != null ? hit.distance : Mathf.Infinity;
         }
     }
 
     void DetectPlayer()
     {
-        currentTarget = humanForm.gameObject.activeSelf ? humanForm : ballForm;
+        currentTarget = player.Find("Human").gameObject.activeSelf ? player.Find("Human") : player.Find("Ball");
 
         if (!isFalling && Mathf.Abs(currentTarget.position.x - transform.position.x) < 0.5f &&
-            currentTarget.position.y < transform.position.y && transform.position.y - currentTarget.position.y < detectedDropDistance)
+            currentTarget.position.y < transform.position.y &&
+            transform.position.y - currentTarget.position.y < detectedDropDistance)
         {
             StartCoroutine(FallAfterDelay());
         }
     }
 
-    System.Collections.IEnumerator FallAfterDelay()
+    IEnumerator FallAfterDelay()
     {
         isFalling = true;
         yield return new WaitForSeconds(delayBeforeFall);
-
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        // sets the rigidbody if found none
-        if (rb == null)
-            rb = gameObject.AddComponent<Rigidbody2D>();
-
         rb.gravityScale = 1;
 
         if (resetAfterFall)
@@ -84,8 +89,9 @@ public class FallingSpike : MonoBehaviour
 
     void ResetSpike()
     {
+        rb.gravityScale = 0;
+        rb.velocity = Vector2.zero;
         transform.position = originalPosition;
         isFalling = false;
-        Destroy(GetComponent<Rigidbody2D>());
     }
 }
