@@ -1221,7 +1221,7 @@ GameObject:
   - component: {fileID: 1329318116121924982}
   - component: {fileID: 8647355302802529764}
   - component: {fileID: 6332677219005090222}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Level3End
   m_TagString: OneWayPlatform
   m_Icon: {fileID: 0}
@@ -2363,7 +2363,7 @@ Transform:
   m_GameObject: {fileID: 1719297679585450420}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.76, y: 0.27, z: -0.016843742}
+  m_LocalPosition: {x: 8.76, y: 0.27000046, z: -0.016843742}
   m_LocalScale: {x: 5.3, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3921,7 +3921,7 @@ GameObject:
   - component: {fileID: 2236963973824901421}
   - component: {fileID: 6928515197102945487}
   - component: {fileID: 563719831334678346}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Incline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6206,7 +6206,7 @@ GameObject:
   - component: {fileID: 2449252186444641771}
   - component: {fileID: 8799395748131169277}
   - component: {fileID: 551846900326837798}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ramp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6337,7 +6337,7 @@ GameObject:
   - component: {fileID: 3804845495583312744}
   - component: {fileID: 862136815469198758}
   - component: {fileID: 9050228833342266420}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Level2End
   m_TagString: OneWayPlatform
   m_Icon: {fileID: 0}
@@ -7173,7 +7173,7 @@ GameObject:
   - component: {fileID: 3733190303059980292}
   - component: {fileID: 2942052094820652559}
   - component: {fileID: 2378819646809794814}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Decline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8600,7 +8600,7 @@ GameObject:
   - component: {fileID: 2864048468540079372}
   - component: {fileID: 3353025224445225222}
   - component: {fileID: 1541388604039769258}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ramp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
