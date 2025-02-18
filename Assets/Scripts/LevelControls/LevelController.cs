@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 
 public class LevelController : MonoBehaviour
 {
@@ -26,7 +26,7 @@ public class LevelController : MonoBehaviour
         ResetLevel();
         StartCoroutine(DelayedSetSpawn());
     }
-
+   //*
 #if UNITY_EDITOR
     private void Update()
     {
@@ -36,6 +36,7 @@ public class LevelController : MonoBehaviour
         }
     }
 #endif
+   // */
 
     IEnumerator DelayedSetSpawn()
     {

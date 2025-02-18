@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2855413341121830702}
   - component: {fileID: 9010506869429595877}
   - component: {fileID: 3039774160674016058}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Breakable1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -740,7 +740,7 @@ GameObject:
   - component: {fileID: 4363368797871641859}
   - component: {fileID: 6479209621588314734}
   - component: {fileID: 7375494266327918295}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Breakable1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7435,7 +7435,7 @@ GameObject:
   - component: {fileID: 7077034672320672361}
   - component: {fileID: 3777732273318754763}
   - component: {fileID: 7511108428091178629}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Breakable3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9150,7 +9150,7 @@ GameObject:
   - component: {fileID: 6252745180605383548}
   - component: {fileID: 1779956364982619894}
   - component: {fileID: 5037741254836634584}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Breakable2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9817,7 +9817,7 @@ GameObject:
   - component: {fileID: 2828214415431847227}
   - component: {fileID: 3117661170099107188}
   - component: {fileID: 3791821073513500432}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Breakable4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

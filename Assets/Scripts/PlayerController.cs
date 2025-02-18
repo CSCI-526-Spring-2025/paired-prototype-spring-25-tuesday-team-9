@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Ball Form Parameters")]
     private float ballMaxSpeed = 12f;
-    private float ballRollForce = 2f;
+    private float ballRollForce = 250f;
     private float ballJumpForce = 12f;
     private Rigidbody2D ballRb;
 
@@ -100,11 +100,11 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded)
             {
-                ballRb.AddForce(Vector2.right * horizontalInput * ballRollForce * 2, ForceMode2D.Force);
+                ballRb.AddForce(Vector2.right * horizontalInput * ballRollForce * Time.deltaTime * 2, ForceMode2D.Force);
             }
            else
             {
-                ballRb.AddForce(Vector2.right * horizontalInput * ballRollForce, ForceMode2D.Force);
+                ballRb.AddForce(Vector2.right * horizontalInput * ballRollForce * Time.deltaTime, ForceMode2D.Force);
             }
         }
     }
