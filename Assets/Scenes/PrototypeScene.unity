@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 670292000}
   - component: {fileID: 670291999}
   - component: {fileID: 670291998}
+  - component: {fileID: 670292001}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Player
@@ -358,6 +359,18 @@ Transform:
   - {fileID: 1566854583}
   m_Father: {fileID: 1013407242}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &670292001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670291997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d81acb99c742425e93dbaa8cc48268b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &977118711
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +421,7 @@ MonoBehaviour:
   - {fileID: 4336302890644000423, guid: 84cb79854f8c14e439db73ac3ac36c82, type: 3}
   - {fileID: 4336302890644000423, guid: 65330fd84070f07429d158aee0991a37, type: 3}
   - {fileID: 4336302890644000423, guid: eff098438b9b4fb458a765dea1f0f9ca, type: 3}
+  - {fileID: 1666531493727664759, guid: 54d88499a52044f79b6ac96996636db6, type: 3}
   CurrentLevel: 0
 --- !u!1 &1013407240
 GameObject:
@@ -557,6 +571,7 @@ GameObject:
   - component: {fileID: 1534451471}
   - component: {fileID: 1534451470}
   - component: {fileID: 1534451469}
+  - component: {fileID: 1534451472}
   m_Layer: 0
   m_Name: Human
   m_TagString: Player
@@ -642,6 +657,18 @@ Transform:
   - {fileID: 1035997772}
   m_Father: {fileID: 1013407242}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1534451472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534451468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d81acb99c742425e93dbaa8cc48268b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1566854582
 GameObject:
   m_ObjectHideFlags: 0
