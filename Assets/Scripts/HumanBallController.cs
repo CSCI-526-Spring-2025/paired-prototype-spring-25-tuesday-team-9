@@ -61,7 +61,14 @@ public class HumanBallController : MonoBehaviour
                 StartCoroutine(DisableOneWayPlatform(effector));
             }
 
+            SpriteRenderer render = platform.GetComponent<SpriteRenderer>();
+            if (render)
+            {
+                Color c = render.color;
+                c.a = 0.5f;
+                render.color = c;
             }
+        }
     }
 
     IEnumerator DisableOneWayPlatform(PlatformEffector2D effector)
@@ -69,6 +76,14 @@ public class HumanBallController : MonoBehaviour
         yield return new WaitForSeconds(10f);
         Debug.Log("Disabling one-way platform after 10 seconds");
         effector.rotationalOffset = 270f; // Disable one-way property after 10 seconds
+
+        SpriteRenderer render = effector.GetComponentInParent<SpriteRenderer>();
+        if (render)
+        {
+            Color c = render.color;
+            c.a = 1.0f;
+            render.color = c;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

@@ -11,6 +11,9 @@ public class LevelController : MonoBehaviour
     [SerializeField]
     int CurrentLevel = 0;
 
+    [SerializeField]
+    GameObject EndMessage;
+
     GameObject CurrentLevelObj;
     GameObject PlayerRef;
 
@@ -80,6 +83,16 @@ public class LevelController : MonoBehaviour
             Respawn();
             PlayerRef.SetActive(true);
             StartCoroutine(DelayedSetSpawn());
+        }
+        else
+        {
+            PlayerController pc = PlayerRef.GetComponent<PlayerController>();
+            pc.SetToDefaultState();
+            PlayerRef.SetActive(false);
+            
+            Vector3 pos = pc.humanForm.transform.position;
+            pos.z = -5;
+            Instantiate(EndMessage, pos, Quaternion.identity);
         }
     }
 
